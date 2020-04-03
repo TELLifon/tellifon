@@ -22,6 +22,7 @@ import {
   Link as RouterLink
 } from "react-router-dom";
 import CategoryPage from "./CategoryPage";
+import EventPage from "./EventPage";
 
 const categories = [
   {
@@ -98,7 +99,12 @@ function ResponsiveDrawer(props) {
       <Divider />
       <List>
         {categories.map(c => (
-          <ListItem button key={c.id} component={RouterLink} to={`/${c.id}`}>
+          <ListItem
+            button
+            key={c.id}
+            component={RouterLink}
+            to={`/categories/${c.id}`}
+          >
             <ListItemIcon>
               <InboxIcon />
             </ListItemIcon>
@@ -125,7 +131,7 @@ function ResponsiveDrawer(props) {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" noWrap>
-              Responsive drawer
+              luemau
             </Typography>
           </Toolbar>
         </AppBar>
@@ -162,8 +168,11 @@ function ResponsiveDrawer(props) {
         </nav>
         <main className={classes.content}>
           <Switch>
-            <Route path="/:categoryId">
+            <Route path="/categories/:categoryId">
               <CategoryPage />
+            </Route>
+            <Route path="/events/:eventId">
+              <EventPage />
             </Route>
           </Switch>
         </main>

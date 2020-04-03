@@ -7,6 +7,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
+import { Link as RouterLink } from "react-router-dom";
 
 const categoryData = {
   id: "",
@@ -103,7 +104,7 @@ const CategoryPage = () => {
         {categoryData.events.map(e => (
           <Grid item xs={12} sm={6} lg={4} xl={3}>
             <Card>
-              <CardActionArea>
+              <CardActionArea component={RouterLink} to={`/events/${e.id}`}>
                 <CardMedia
                   className={classes.media}
                   image={e.image_src}
