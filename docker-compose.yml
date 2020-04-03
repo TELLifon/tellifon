@@ -1,0 +1,10 @@
+version: '2'
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    labels:
+      lagoon.type: nginx
+    ports:
+      - "8080:8080"

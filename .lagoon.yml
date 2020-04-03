@@ -1,0 +1,7 @@
+docker-compose-yaml: docker-compose.yml
+
+environments:
+  master:
+    routes:
+    - nginx:
+      - luemau.ch.amazee.io
