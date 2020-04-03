@@ -6,6 +6,7 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
+import Button from "@material-ui/core/Button";
 
 const categoryData = {
   id: "",
@@ -59,11 +60,17 @@ const categoryData = {
   ]
 };
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   media: {
     height: 140
+  },
+  actionButtons: {
+    textAlign: "right"
+  },
+  actionButton: {
+    marginLeft: theme.spacing(2)
   }
-});
+}));
 
 const CategoryPage = () => {
   // const { categoryId } = useParams();
@@ -71,9 +78,25 @@ const CategoryPage = () => {
 
   return (
     <div>
-      <Typography variant="h4" gutterBottom>
-        {categoryData.label}
-      </Typography>
+      <Grid container spacing={3}>
+        <Grid item xs={12} sm={4}>
+          <Typography variant="h4" gutterBottom>
+            {categoryData.label}
+          </Typography>
+        </Grid>
+        <Grid item xs={12} sm={8} className={classes.actionButtons}>
+          <Button color="primary" variant="outlined">
+            Create Meeting
+          </Button>
+          <Button
+            color="primary"
+            variant="outlined"
+            className={classes.actionButton}
+          >
+            Create Live Stream
+          </Button>
+        </Grid>
+      </Grid>
       <br />
       <br />
       <Grid container spacing={3}>
