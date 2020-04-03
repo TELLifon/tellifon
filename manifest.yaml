@@ -1,0 +1,5 @@
+---
+applications:
+  - name: luemau
+    memory: 64MB
+    buildpack: https://github.com/cloudfoundry/nginx-buildpack.git
