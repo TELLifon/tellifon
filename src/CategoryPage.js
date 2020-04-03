@@ -71,6 +71,11 @@ const CategoryPage = () => {
 
   return (
     <div>
+      <Typography variant="h4" gutterBottom>
+        {categoryData.label}
+      </Typography>
+      <br />
+      <br />
       <Grid container spacing={3}>
         {categoryData.events.map(e => (
           <Grid item xs={12} sm={6} lg={4} xl={3}>
