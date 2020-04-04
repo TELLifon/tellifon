@@ -19,45 +19,45 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link as RouterLink
+  Link as RouterLink,
 } from "react-router-dom";
 import CategoryPage from "./CategoryPage";
 import EventPage from "./EventPage";
 
 const drawerWidth = 240;
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    display: "flex"
+    display: "flex",
   },
   drawer: {
     [theme.breakpoints.up("sm")]: {
       width: drawerWidth,
-      flexShrink: 0
-    }
+      flexShrink: 0,
+    },
   },
   appBar: {
     [theme.breakpoints.up("sm")]: {
       width: `calc(100% - ${drawerWidth}px)`,
-      marginLeft: drawerWidth
-    }
+      marginLeft: drawerWidth,
+    },
   },
   menuButton: {
     marginRight: theme.spacing(2),
     [theme.breakpoints.up("sm")]: {
-      display: "none"
-    }
+      display: "none",
+    },
   },
   // necessary for content to be below app bar
   toolbar: theme.mixins.toolbar,
   drawerPaper: {
-    width: drawerWidth
+    width: drawerWidth,
   },
   content: {
     flexGrow: 1,
     marginTop: theme.spacing(8),
-    padding: theme.spacing(3)
-  }
+    padding: theme.spacing(3),
+  },
 }));
 
 function ResponsiveDrawer(props) {
@@ -73,12 +73,12 @@ function ResponsiveDrawer(props) {
 
   useEffect(() => {
     fetch("/api/categories")
-      .then(res => res.json())
+      .then((res) => res.json())
       .then(
-        result => {
+        (result) => {
           setCategories(result);
         },
-        error => {
+        (error) => {
           console.error(error);
         }
       );
@@ -89,7 +89,7 @@ function ResponsiveDrawer(props) {
       <div className={classes.toolbar} />
       <Divider />
       <List>
-        {categories.map(c => (
+        {categories.map((c) => (
           <ListItem
             button
             key={c.id}
@@ -136,10 +136,10 @@ function ResponsiveDrawer(props) {
               open={mobileOpen}
               onClose={handleDrawerToggle}
               classes={{
-                paper: classes.drawerPaper
+                paper: classes.drawerPaper,
               }}
               ModalProps={{
-                keepMounted: true // Better open performance on mobile.
+                keepMounted: true, // Better open performance on mobile.
               }}
             >
               {drawer}
@@ -148,7 +148,7 @@ function ResponsiveDrawer(props) {
           <Hidden xsDown implementation="css">
             <Drawer
               classes={{
-                paper: classes.drawerPaper
+                paper: classes.drawerPaper,
               }}
               variant="permanent"
               open
@@ -177,7 +177,7 @@ ResponsiveDrawer.propTypes = {
    * Injected by the documentation to work in an iframe.
    * You won't need it on your project.
    */
-  container: PropTypes.any
+  container: PropTypes.any,
 };
 
 export default ResponsiveDrawer;

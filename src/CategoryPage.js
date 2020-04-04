@@ -10,16 +10,16 @@ import Button from "@material-ui/core/Button";
 import { Link as RouterLink, useParams } from "react-router-dom";
 import defaultImage from "./default-image.jpeg";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   media: {
-    height: 140
+    height: 140,
   },
   actionButtons: {
-    textAlign: "right"
+    textAlign: "right",
   },
   actionButton: {
-    marginLeft: theme.spacing(2)
-  }
+    marginLeft: theme.spacing(2),
+  },
 }));
 
 const CategoryPage = () => {
@@ -29,12 +29,12 @@ const CategoryPage = () => {
 
   useEffect(() => {
     fetch(`/api/categories/${categoryId}`)
-      .then(res => res.json())
+      .then((res) => res.json())
       .then(
-        result => {
+        (result) => {
           setCategory(result);
         },
-        error => {
+        (error) => {
           console.error(error);
         }
       );
@@ -64,7 +64,7 @@ const CategoryPage = () => {
       <br />
       <br />
       <Grid container spacing={3}>
-        {category.events.map(e => (
+        {category.events.map((e) => (
           <Grid item xs={12} sm={6} lg={4} xl={3} key={e.id}>
             <Card>
               <CardActionArea component={RouterLink} to={`/events/${e.id}`}>

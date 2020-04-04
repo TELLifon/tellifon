@@ -7,21 +7,21 @@ import Link from "@material-ui/core/Link";
 import { useParams } from "react-router-dom";
 import defaultImage from "./default-image.jpeg";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   media: {
-    height: 140
+    height: 140,
   },
   actionButtons: {
-    textAlign: "right"
+    textAlign: "right",
   },
   actionButton: {
-    marginLeft: theme.spacing(2)
+    marginLeft: theme.spacing(2),
   },
   heroImage: {
     width: "100%",
     maxHeight: theme.spacing(20),
-    objectFit: "cover"
-  }
+    objectFit: "cover",
+  },
 }));
 
 const CategoryPage = () => {
@@ -31,12 +31,12 @@ const CategoryPage = () => {
 
   useEffect(() => {
     fetch(`/api/events/${eventId}`)
-      .then(res => res.json())
+      .then((res) => res.json())
       .then(
-        result => {
+        (result) => {
           setEvent(result);
         },
-        error => {
+        (error) => {
           console.error(error);
         }
       );
