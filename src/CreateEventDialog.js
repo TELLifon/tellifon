@@ -2,6 +2,7 @@ import React, { useState, useCallback } from "react";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Checkbox from "@material-ui/core/Checkbox";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
@@ -21,7 +22,7 @@ const CreateEventModal = ({ isOpen, handleClose, categoryId }) => {
   );
   const [description, setDescription] = useState("");
   const [moderatorName, setModeratorName] = useState("");
-  const [isPublic, setIsPublic] = useState(false);
+  const [isPublic, setIsPublic] = useState(true);
   const [image, setImage] = useState(null);
   const onDrop = useCallback((acceptedFiles) => {
     setImage(acceptedFiles[0]);
@@ -129,12 +130,18 @@ const CreateEventModal = ({ isOpen, handleClose, categoryId }) => {
             setModeratorName(e.target.value);
           }}
         />
-        <Checkbox
-          checked={isPublic}
-          onChange={(e) => {
-            setIsPublic(e.target.checked);
-          }}
-          inputProps={{ "aria-label": "primary checkbox" }}
+        <br />
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={isPublic}
+              onChange={(e) => {
+                setIsPublic(e.target.checked);
+              }}
+              inputProps={{ "aria-label": "" }}
+            />
+          }
+          label="Make event public"
         />
       </DialogContent>
       <DialogActions>

@@ -93,6 +93,15 @@ const CategoryPage = () => {
                     color="textSecondary"
                     component="p"
                   >
+                    {new Date(e.starttime).toLocaleDateString()} at{" "}
+                    {new Date(e.starttime).toLocaleTimeString()}
+                  </Typography>
+                  <br />
+                  <Typography
+                    variant="body2"
+                    color="textSecondary"
+                    component="p"
+                  >
                     {e.description}
                   </Typography>
                 </CardContent>
