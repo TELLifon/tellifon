@@ -74,6 +74,20 @@ const CategoryPage = () => {
           </Button>
         </Grid>
       </Grid>
+      <Typography variant="body2" color="textSecondary" component="p">
+        {new Date(event.starttime).toLocaleDateString()} from{" "}
+        {new Date(event.starttime).toLocaleTimeString()} until{" "}
+        {new Date(event.endtime).toLocaleDateString() ===
+        new Date(event.starttime).toLocaleDateString()
+          ? ""
+          : `${new Date(event.endtime).toLocaleDateString()} `}
+        {new Date(event.endtime).toLocaleTimeString()}
+      </Typography>
+      {event.moderator ? (
+        <Typography variant="body2" color="textSecondary" component="p">
+          By {event.moderator}
+        </Typography>
+      ) : null}
       <br />
       <br />
       <Typography variant="body1" gutterBottom>

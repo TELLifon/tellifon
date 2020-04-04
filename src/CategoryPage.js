@@ -84,7 +84,7 @@ const CategoryPage = () => {
       <br />
       <Grid container spacing={3}>
         {category.events.map((e) => (
-          <Grid item xs={12} sm={6} lg={4} xl={3} key={e.id}>
+          <Grid item xs={12} md={6} lg={4} xl={3} key={e.id}>
             <Card>
               <CardActionArea component={RouterLink} to={`/events/${e.id}`}>
                 <CardMedia
@@ -103,6 +103,7 @@ const CategoryPage = () => {
                   >
                     {new Date(e.starttime).toLocaleDateString()} at{" "}
                     {new Date(e.starttime).toLocaleTimeString()}
+                    {e.moderator ? ` by ${e.moderator}` : ""}
                   </Typography>
                   <br />
                   <Typography
