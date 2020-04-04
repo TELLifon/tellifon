@@ -31,8 +31,8 @@ const CategoryPage = () => {
   const [isCreateEventDialogOpen, setIsCreateEventDialogOpen] = useState(false);
   const [category, setCategory] = useState(null);
 
-  useEffect(() => {
-    fetch(`/api/categories/${categoryId}`)
+  const loadCategory = (id) => {
+    fetch(`/api/categories/${id}`)
       .then((res) => res.json())
       .then(
         (result) => {
@@ -42,6 +42,10 @@ const CategoryPage = () => {
           console.error(error);
         }
       );
+  };
+
+  useEffect(() => {
+    loadCategory(categoryId);
   }, [categoryId]);
 
   return category ? (
@@ -120,6 +124,7 @@ const CategoryPage = () => {
         categoryId={categoryId}
         handleClose={() => {
           setIsCreateEventDialogOpen(false);
+          loadCategory(categoryId);
         }}
       />
     </div>
