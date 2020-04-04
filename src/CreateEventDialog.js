@@ -28,7 +28,9 @@ const CreateEventModal = ({ isOpen, handleClose, categoryId }) => {
   inOneHour.setHours(inOneHour.getHours() + 2);
   const [name, setName] = useState("");
   const [startTime, setStartTime] = useState(now);
+  const [startDatePickerOpen, setStartDatePickerOpen] = useState(false);
   const [endTime, setEndTime] = useState(inOneHour);
+  const [endDatePickerOpen, setEndDatePickerOpen] = useState(false);
   const [description, setDescription] = useState("");
   const [moderatorName, setModeratorName] = useState("");
   const [isPublic, setIsPublic] = useState(true);
@@ -103,15 +105,19 @@ const CreateEventModal = ({ isOpen, handleClose, categoryId }) => {
           <Grid container justify="space-around">
             <KeyboardDatePicker
               disableToolbar
+              open={startDatePickerOpen}
+              onOpen={() => setStartDatePickerOpen(true)}
+              onClose={() => setStartDatePickerOpen(false)}
+              onChange={(d) => {
+                setStartTime(d.toISOString());
+                setStartDatePickerOpen(false);
+              }}
               label="Start date"
               variant="inline"
               format="MM/dd/yyyy"
               margin="normal"
               id="date-picker-inline"
               value={startTime}
-              onChange={(d) => {
-                setStartTime(d.toISOString());
-              }}
               KeyboardButtonProps={{
                 "aria-label": "change date",
               }}
@@ -141,8 +147,12 @@ const CreateEventModal = ({ isOpen, handleClose, categoryId }) => {
               margin="normal"
               id="date-picker-inline"
               value={endTime}
+              open={endDatePickerOpen}
+              onOpen={() => setEndDatePickerOpen(true)}
+              onClose={() => setEndDatePickerOpen(false)}
               onChange={(d) => {
                 setEndTime(d.toISOString());
+                setEndDatePickerOpen(false);
               }}
               KeyboardButtonProps={{
                 "aria-label": "change date",
