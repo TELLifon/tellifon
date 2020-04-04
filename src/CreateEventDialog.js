@@ -40,7 +40,9 @@ const CreateEventModal = ({ isOpen, handleClose, categoryId }) => {
     formData.append("description", description);
     formData.append("moderator", moderatorName);
     formData.append("is_public", isPublic);
-    formData.append("image", image);
+    if (image) {
+      formData.append("image", image);
+    }
 
     await fetch(`/api/categories/${categoryId}/events`, {
       method: "POST",
