@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from "react";
+import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Checkbox from "@material-ui/core/Checkbox";
@@ -16,8 +17,13 @@ import {
 } from "@material-ui/pickers";
 import Grid from "@material-ui/core/Grid";
 
+const useStyles = makeStyles((theme) => ({
+  imagePreview: { maxWidth: theme.spacing(32) },
+}));
+
 const CreateEventModal = ({ isOpen, handleClose, categoryId }) => {
   const now = new Date();
+  const classes = useStyles();
   const inOneHour = new Date();
   inOneHour.setHours(inOneHour.getHours() + 2);
   const [name, setName] = useState("");
@@ -28,7 +34,11 @@ const CreateEventModal = ({ isOpen, handleClose, categoryId }) => {
   const [isPublic, setIsPublic] = useState(true);
   const [image, setImage] = useState(null);
   const onDrop = useCallback((acceptedFiles) => {
-    setImage(acceptedFiles[0]);
+    setImage(
+      Object.assign(acceptedFiles[0], {
+        preview: URL.createObjectURL(acceptedFiles[0]),
+      })
+    );
   }, []);
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
@@ -54,6 +64,10 @@ const CreateEventModal = ({ isOpen, handleClose, categoryId }) => {
     handleClose();
   };
 
+  const preview = image ? (
+    <img src={image.preview} alt="preview" className={classes.imagePreview} />
+  ) : null;
+
   return (
     <Dialog
       open={isOpen}
@@ -78,11 +92,12 @@ const CreateEventModal = ({ isOpen, handleClose, categoryId }) => {
         <div {...getRootProps()}>
           <input {...getInputProps()} />
           {isDragActive ? (
-            <p>Drop the files here ...</p>
+            <p>Drop the image here</p>
           ) : (
-            <p>Drag 'n' drop some files here, or click to select files</p>
+            <p>Drag and drop or click to select an image</p>
           )}
         </div>
+        {preview}
         <br />
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <Grid container justify="space-around">
