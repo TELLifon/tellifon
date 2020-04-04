@@ -66,8 +66,8 @@ const CreateEventModal = ({ isOpen, handleClose, categoryId }) => {
   const handleCreate = async () => {
     const formData = new FormData();
     formData.append("name", title);
-    formData.append("starttime", startTime);
-    formData.append("endtime", endTime);
+    formData.append("starttime", startTime.toISOString());
+    formData.append("endtime", endTime.toISOString());
     formData.append("description", description);
     formData.append("moderator", moderatorName);
     formData.append("is_public", isPublic);
@@ -80,6 +80,18 @@ const CreateEventModal = ({ isOpen, handleClose, categoryId }) => {
       body: formData,
     });
     handleClose();
+  };
+
+  const allFieldsValid = () => {
+    return (
+      title !== "" &&
+      description !== "" &&
+      moderatorName !== "" &&
+      startTime instanceof Date &&
+      !isNaN(startTime) &&
+      endTime instanceof Date &&
+      !isNaN(endTime)
+    );
   };
 
   return (
@@ -164,10 +176,8 @@ const CreateEventModal = ({ isOpen, handleClose, categoryId }) => {
                 setIsStartDatePickerOpen(false);
               }}
               onChange={(d) => {
-		if (d instanceof Date && !isNaN(d)) {
-                  setStartTime(d.toISOString());
-                  setIsStartDatePickerOpen(false);
-		}
+                setStartTime(d);
+                setIsStartDatePickerOpen(false);
               }}
               label="Start date"
               variant="inline"
@@ -185,9 +195,7 @@ const CreateEventModal = ({ isOpen, handleClose, categoryId }) => {
               id="time-picker"
               value={startTime}
               onChange={(d) => {
-                if (d instanceof Date && !isNaN(d)) {
-                  setStartTime(d.toISOString());
-                }
+                setStartTime(d);
               }}
               KeyboardButtonProps={{
                 "aria-label": "change time",
@@ -214,10 +222,8 @@ const CreateEventModal = ({ isOpen, handleClose, categoryId }) => {
                 setIsEndDatePickerOpen(false);
               }}
               onChange={(d) => {
-		if (d instanceof Date && !isNaN(d)) {
-                  setEndTime(d.toISOString());
-                  setIsEndDatePickerOpen(false);
-		}
+                setEndTime(d);
+                setIsEndDatePickerOpen(false);
               }}
               KeyboardButtonProps={{
                 "aria-label": "change date",
@@ -229,9 +235,7 @@ const CreateEventModal = ({ isOpen, handleClose, categoryId }) => {
               id="time-picker"
               value={endTime}
               onChange={(d) => {
-                if (d instanceof Date && !isNaN(d)) {
-                  setEndTime(d.toISOString());
-                }
+                setEndTime(d);
               }}
               KeyboardButtonProps={{
                 "aria-label": "change time",
@@ -258,7 +262,12 @@ const CreateEventModal = ({ isOpen, handleClose, categoryId }) => {
         <Button color="primary" onClick={handleClose}>
           Cancel
         </Button>
-        <Button color="primary" variant="contained" onClick={handleCreate}>
+        <Button
+          color="primary"
+          variant="contained"
+          disabled={!allFieldsValid()}
+          onClick={handleCreate}
+        >
           Create
         </Button>
       </DialogActions>
