@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import AppBar from "@material-ui/core/AppBar";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -23,29 +23,6 @@ import {
 } from "react-router-dom";
 import CategoryPage from "./CategoryPage";
 import EventPage from "./EventPage";
-
-const categories = [
-  {
-    id: "coffe-and-cake",
-    label: "Coffee and Cake",
-    icon: "local_cafe"
-  },
-  {
-    id: "meditation",
-    label: "Meditation",
-    icon: "local_cafe"
-  },
-  {
-    id: "sports",
-    label: "Sports",
-    icon: "local_cafe"
-  },
-  {
-    id: "music",
-    label: "Music",
-    icon: "local_cafe"
-  }
-];
 
 const drawerWidth = 240;
 
@@ -87,26 +64,22 @@ function ResponsiveDrawer(props) {
   const { container } = props;
   const classes = useStyles();
   const theme = useTheme();
-  const [mobileOpen, setMobileOpen] = React.useState(false);
-  const [error, setError] = React.useState(null);
-  const [isLoaded, setIsLoaded] = React.useState(false);
-  const [items, setItems] = React.useState([]);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [categories, setCategories] = useState([]);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
 
-  React.useEffect(() => {
-    fetch("/categories")
+  useEffect(() => {
+    fetch("/api/categories")
       .then(res => res.json())
       .then(
         result => {
-          setIsLoaded(true);
-          setItems(result.items);
+          setCategories(result);
         },
         error => {
-          setIsLoaded(true);
-          setError(error);
+          console.error(error);
         }
       );
   }, []);
