@@ -63,7 +63,7 @@ const CategoryPage = () => {
             color="primary"
             variant="outlined"
             component={Link}
-            href={`https://schwaf.li/${event.id}`}
+            href={`https://jitsi.ch.amazee.io/${event.id}`}
             target="_blank"
             rel="noopener"
           >
