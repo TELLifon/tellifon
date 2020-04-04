@@ -38,8 +38,8 @@ const useStyles = makeStyles((theme) => ({
 const CreateEventModal = ({ isOpen, handleClose, categoryId }) => {
   const classes = useStyles();
 
-  const now = new Date();
-  const inOneHour = new Date();
+  var now = new Date();
+  var inOneHour = new Date();
   inOneHour.setHours(inOneHour.getHours() + 2);
   const [title, setTitle] = useState("");
   const [startTime, setStartTime] = useState(now);
@@ -79,6 +79,15 @@ const CreateEventModal = ({ isOpen, handleClose, categoryId }) => {
       method: "POST",
       body: formData,
     });
+    setTitle("");
+    setDescription("");
+    setModeratorName("");
+    setImage(null);
+    now = new Date();
+    inOneHour = new Date();
+    inOneHour.setHours(inOneHour.getHours() + 2);
+    setStartTime(now);
+    setEndTime(inOneHour);
     handleClose();
   };
 
