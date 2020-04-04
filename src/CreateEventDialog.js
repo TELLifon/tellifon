@@ -1,0 +1,117 @@
+import React, { useState } from "react";
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogTitle from "@material-ui/core/DialogTitle";
+
+const CreateEventModal = ({ isOpen, handleClose, categoryId }) => {
+  const [name, setName] = useState("");
+  const [startTime, setStartTime] = useState("");
+  const [endTime, setEndTime] = useState("");
+  const [description, setDescription] = useState("");
+  const [moderatorName, setModeratorName] = useState("");
+
+  const handleCreate = async () => {
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("starttime", startTime);
+    formData.append("endtime", endTime);
+    formData.append("description", description);
+    formData.append("moderator", moderatorName);
+
+    await fetch(`/api/categories/${categoryId}/events`, {
+      method: "POST",
+      body: formData,
+    });
+    handleClose();
+  };
+
+  return (
+    <Dialog
+      open={isOpen}
+      onClose={handleClose}
+      aria-labelledby="form-dialog-title"
+    >
+      <DialogTitle id="form-dialog-title">Create Event</DialogTitle>
+      <DialogContent>
+        <TextField
+          autoFocus
+          margin="normal"
+          id="name"
+          label="Name"
+          fullWidth
+          value={name}
+          onChange={(e) => {
+            setName(e.target.value);
+          }}
+        />
+        <br />
+        <TextField
+          id="start-time"
+          label="Start Time"
+          type="datetime-local"
+          defaultValue="2017-05-24T10:30"
+          fullWidth
+          InputLabelProps={{
+            shrink: true,
+          }}
+          value={startTime}
+          onChange={(e) => {
+            setStartTime(e.target.value);
+          }}
+        />
+        <br />
+        <TextField
+          margin="normal"
+          id="end-time"
+          label="End Time"
+          type="datetime-local"
+          defaultValue="2017-05-24T10:30"
+          fullWidth
+          InputLabelProps={{
+            shrink: true,
+          }}
+          value={endTime}
+          onChange={(e) => {
+            setEndTime(e.target.value);
+          }}
+        />
+        <br />
+        <TextField
+          margin="normal"
+          id="description"
+          label="Description"
+          multiline
+          fullWidth
+          value={description}
+          onChange={(e) => {
+            setDescription(e.target.value);
+          }}
+        />
+        <br />
+        <TextField
+          margin="normal"
+          id="moderator-name"
+          label="Moderator Name (Optional)"
+          fullWidth
+          value={moderatorName}
+          onChange={(e) => {
+            setModeratorName(e.target.value);
+          }}
+        />
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={handleClose} color="primary">
+          Cancel
+        </Button>
+        <Button onClick={handleCreate} color="primary">
+          Create
+        </Button>
+      </DialogActions>
+    </Dialog>
+  );
+};
+
+export default CreateEventModal;

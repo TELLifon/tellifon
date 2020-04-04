@@ -9,6 +9,7 @@ import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import { Link as RouterLink, useParams } from "react-router-dom";
 import defaultImage from "./default-image.jpeg";
+import CreateEventDialog from "./CreateEventDialog";
 
 const useStyles = makeStyles((theme) => ({
   media: {
@@ -25,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
 const CategoryPage = () => {
   const { categoryId } = useParams();
   const classes = useStyles();
+  const [isCreateEventDialogOpen, setIsCreateEventDialogOpen] = useState(false);
   const [category, setCategory] = useState(null);
 
   useEffect(() => {
@@ -49,13 +51,22 @@ const CategoryPage = () => {
           </Typography>
         </Grid>
         <Grid item xs={12} sm={8} className={classes.actionButtons}>
-          <Button color="primary" variant="outlined">
+          <Button
+            color="primary"
+            variant="outlined"
+            onClick={() => {
+              setIsCreateEventDialogOpen(true);
+            }}
+          >
             Create Meeting
           </Button>
           <Button
             color="primary"
             variant="outlined"
             className={classes.actionButton}
+            onClick={() => {
+              setIsCreateEventDialogOpen(true);
+            }}
           >
             Create Live Stream
           </Button>
@@ -90,6 +101,14 @@ const CategoryPage = () => {
           </Grid>
         ))}
       </Grid>
+
+      <CreateEventDialog
+        isOpen={isCreateEventDialogOpen}
+        categoryId={categoryId}
+        handleClose={() => {
+          setIsCreateEventDialogOpen(false);
+        }}
+      />
     </div>
   ) : null;
 };
