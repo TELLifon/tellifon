@@ -22,6 +22,7 @@ import {
   NavLink,
 } from "react-router-dom";
 import CategoryPage from "./CategoryPage";
+import HomePage from "./HomePage";
 import EventPage from "./EventPage";
 import "./App.css";
 
@@ -161,6 +162,9 @@ function ResponsiveDrawer(props) {
         </nav>
         <main className={classes.content}>
           <Switch>
+            <Route exact path="/">
+              <HomePage />
+            </Route>
             <Route path="/categories/:categoryId">
               <CategoryPage />
             </Route>
