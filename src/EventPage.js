@@ -45,7 +45,7 @@ const CategoryPage = () => {
   return event ? (
     <div>
       <img
-        src={event.image_src || defaultImage}
+        src={event.img_src || defaultImage}
         alt={event.name}
         className={classes.heroImage}
       />

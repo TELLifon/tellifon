@@ -81,7 +81,7 @@ const CategoryPage = () => {
               <CardActionArea component={RouterLink} to={`/events/${e.id}`}>
                 <CardMedia
                   className={classes.media}
-                  image={e.image_src || defaultImage}
+                  image={e.img_src || defaultImage}
                   title={e.name}
                 />
                 <CardContent>
