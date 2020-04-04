@@ -122,7 +122,7 @@ function ResponsiveDrawer(props) {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" noWrap>
-              luemau
+              Tellifon
             </Typography>
           </Toolbar>
         </AppBar>
