@@ -8,18 +8,21 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { useDropzone } from "react-dropzone";
+import DateFnsUtils from "@date-io/date-fns";
+import {
+  MuiPickersUtilsProvider,
+  KeyboardTimePicker,
+  KeyboardDatePicker,
+} from "@material-ui/pickers";
+import Grid from "@material-ui/core/Grid";
 
 const CreateEventModal = ({ isOpen, handleClose, categoryId }) => {
   const now = new Date();
-  const inOneHour = now;
+  const inOneHour = new Date();
   inOneHour.setHours(inOneHour.getHours() + 2);
   const [name, setName] = useState("");
-  const [startTime, setStartTime] = useState(
-    now.toISOString().substring(0, -1)
-  );
-  const [endTime, setEndTime] = useState(
-    inOneHour.toISOString().substring(0, -1)
-  );
+  const [startTime, setStartTime] = useState(now);
+  const [endTime, setEndTime] = useState(inOneHour);
   const [description, setDescription] = useState("");
   const [moderatorName, setModeratorName] = useState("");
   const [isPublic, setIsPublic] = useState(true);
@@ -81,35 +84,69 @@ const CreateEventModal = ({ isOpen, handleClose, categoryId }) => {
           )}
         </div>
         <br />
-        <TextField
-          id="start-time"
-          label="Start Time"
-          type="datetime-local"
-          fullWidth
-          InputLabelProps={{
-            shrink: true,
-          }}
-          value={startTime}
-          onChange={(e) => {
-            setStartTime(e.target.value);
-          }}
-        />
+        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+          <Grid container justify="space-around">
+            <KeyboardDatePicker
+              disableToolbar
+              label="Start date"
+              variant="inline"
+              format="MM/dd/yyyy"
+              margin="normal"
+              id="date-picker-inline"
+              value={startTime}
+              onChange={(d) => {
+                setStartTime(d.toISOString());
+              }}
+              KeyboardButtonProps={{
+                "aria-label": "change date",
+              }}
+            />
+            <KeyboardTimePicker
+              label="Start time"
+              margin="normal"
+              id="time-picker"
+              value={startTime}
+              onChange={(d) => {
+                setStartTime(d.toISOString());
+              }}
+              KeyboardButtonProps={{
+                "aria-label": "change time",
+              }}
+            />
+          </Grid>
+        </MuiPickersUtilsProvider>
         <br />
-        <TextField
-          margin="normal"
-          id="end-time"
-          label="End Time"
-          type="datetime-local"
-          fullWidth
-          InputLabelProps={{
-            shrink: true,
-          }}
-          value={endTime}
-          onChange={(e) => {
-            setEndTime(e.target.value);
-          }}
-        />
-        <br />
+        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+          <Grid container justify="space-around">
+            <KeyboardDatePicker
+              disableToolbar
+              label="End date"
+              variant="inline"
+              format="MM/dd/yyyy"
+              margin="normal"
+              id="date-picker-inline"
+              value={endTime}
+              onChange={(d) => {
+                setEndTime(d.toISOString());
+              }}
+              KeyboardButtonProps={{
+                "aria-label": "change date",
+              }}
+            />
+            <KeyboardTimePicker
+              label="End time"
+              margin="normal"
+              id="time-picker"
+              value={endTime}
+              onChange={(d) => {
+                setEndTime(d.toISOString());
+              }}
+              KeyboardButtonProps={{
+                "aria-label": "change time",
+              }}
+            />
+          </Grid>
+        </MuiPickersUtilsProvider>
         <TextField
           margin="normal"
           id="description"
