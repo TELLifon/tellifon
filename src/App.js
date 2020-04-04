@@ -19,10 +19,11 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link as RouterLink,
+  NavLink,
 } from "react-router-dom";
 import CategoryPage from "./CategoryPage";
 import EventPage from "./EventPage";
+import "./App.css";
 
 const drawerWidth = 240;
 
@@ -93,7 +94,7 @@ function ResponsiveDrawer(props) {
           <ListItem
             button
             key={c.id}
-            component={RouterLink}
+            component={NavLink}
             to={`/categories/${c.id}`}
           >
             <ListItemIcon>
