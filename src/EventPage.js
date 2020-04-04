@@ -6,6 +6,7 @@ import Button from "@material-ui/core/Button";
 import Link from "@material-ui/core/Link";
 import { useParams } from "react-router-dom";
 import defaultImage from "./default-image.jpeg";
+import LaunchIcon from "@material-ui/icons/Launch";
 
 const useStyles = makeStyles((theme) => ({
   media: {
@@ -60,14 +61,16 @@ const CategoryPage = () => {
         </Grid>
         <Grid item xs={12} sm={8} className={classes.actionButtons}>
           <Button
+            size="large"
+            startIcon={<LaunchIcon />}
             color="primary"
-            variant="outlined"
+            variant="contained"
             component={Link}
             href={`https://jitsi.ch.amazee.io/${event.id}`}
             target="_blank"
             rel="noopener"
           >
-            Open
+            Open Event
           </Button>
         </Grid>
       </Grid>

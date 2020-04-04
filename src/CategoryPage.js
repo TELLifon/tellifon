@@ -8,6 +8,8 @@ import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import { Link as RouterLink, useParams } from "react-router-dom";
+import ContactlessIcon from "@material-ui/icons/Contactless";
+import PeopleIcon from "@material-ui/icons/People";
 import defaultImage from "./default-image.jpeg";
 import CreateEventDialog from "./CreateEventDialog";
 
@@ -52,6 +54,7 @@ const CategoryPage = () => {
         </Grid>
         <Grid item xs={12} sm={8} className={classes.actionButtons}>
           <Button
+            startIcon={<PeopleIcon />}
             color="primary"
             variant="outlined"
             onClick={() => {
@@ -61,6 +64,7 @@ const CategoryPage = () => {
             Create Meeting
           </Button>
           <Button
+            startIcon={<ContactlessIcon />}
             color="primary"
             variant="outlined"
             className={classes.actionButton}
