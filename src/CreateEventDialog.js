@@ -95,7 +95,6 @@ const CreateEventModal = ({ isOpen, handleClose, categoryId }) => {
     return (
       title !== "" &&
       description !== "" &&
-      moderatorName !== "" &&
       startTime instanceof Date &&
       !isNaN(startTime) &&
       endTime instanceof Date &&
