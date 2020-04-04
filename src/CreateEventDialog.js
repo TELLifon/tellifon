@@ -109,8 +109,10 @@ const CreateEventModal = ({ isOpen, handleClose, categoryId }) => {
               onOpen={() => setStartDatePickerOpen(true)}
               onClose={() => setStartDatePickerOpen(false)}
               onChange={(d) => {
-                setStartTime(d.toISOString());
-                setStartDatePickerOpen(false);
+                if (d instanceof Date && !isNaN(d)) {
+                  setStartTime(d.toISOString());
+                  setStartDatePickerOpen(false);
+                }
               }}
               label="Start date"
               variant="inline"
@@ -128,7 +130,9 @@ const CreateEventModal = ({ isOpen, handleClose, categoryId }) => {
               id="time-picker"
               value={startTime}
               onChange={(d) => {
-                setStartTime(d.toISOString());
+                if (d instanceof Date && !isNaN(d)) {
+                  setStartTime(d.toISOString());
+                }
               }}
               KeyboardButtonProps={{
                 "aria-label": "change time",
@@ -151,8 +155,10 @@ const CreateEventModal = ({ isOpen, handleClose, categoryId }) => {
               onOpen={() => setEndDatePickerOpen(true)}
               onClose={() => setEndDatePickerOpen(false)}
               onChange={(d) => {
-                setEndTime(d.toISOString());
-                setEndDatePickerOpen(false);
+                if (d instanceof Date && !isNaN(d)) {
+                  setEndTime(d.toISOString());
+                  setEndDatePickerOpen(false);
+                }
               }}
               KeyboardButtonProps={{
                 "aria-label": "change date",
@@ -164,7 +170,9 @@ const CreateEventModal = ({ isOpen, handleClose, categoryId }) => {
               id="time-picker"
               value={endTime}
               onChange={(d) => {
-                setEndTime(d.toISOString());
+                if (d instanceof Date && !isNaN(d)) {
+                  setEndTime(d.toISOString());
+                }
               }}
               KeyboardButtonProps={{
                 "aria-label": "change time",
