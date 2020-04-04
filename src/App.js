@@ -88,10 +88,28 @@ function ResponsiveDrawer(props) {
   const classes = useStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [error, setError] = React.useState(null);
+  const [isLoaded, setIsLoaded] = React.useState(false);
+  const [items, setItems] = React.useState([]);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
+
+  React.useEffect(() => {
+    fetch("/categories")
+      .then(res => res.json())
+      .then(
+        result => {
+          setIsLoaded(true);
+          setItems(result.items);
+        },
+        error => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      );
+  }, []);
 
   const drawer = (
     <div>
