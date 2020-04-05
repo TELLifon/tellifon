@@ -125,7 +125,7 @@ function ResponsiveDrawer(props) {
             <ListItemIcon>
               <Icon>{c.icon}</Icon>
             </ListItemIcon>
-            <ListItemText primary={c.label.en} />
+            <ListItemText primary={c.label[i18n.language]} />
           </ListItem>
         ))}
       </List>
