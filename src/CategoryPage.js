@@ -12,6 +12,7 @@ import ContactlessIcon from "@material-ui/icons/Contactless";
 import PeopleIcon from "@material-ui/icons/People";
 import defaultImage from "./default-image.jpeg";
 import CreateEventDialog from "./CreateEventDialog";
+import { useTranslation } from "react-i18next";
 
 const useStyles = makeStyles((theme) => ({
   media: {
@@ -30,6 +31,7 @@ const CategoryPage = () => {
   const classes = useStyles();
   const [isCreateEventDialogOpen, setIsCreateEventDialogOpen] = useState(false);
   const [category, setCategory] = useState(null);
+  const { t } = useTranslation();
 
   const loadCategory = (id) => {
     fetch(`/api/categories/${id}`)
@@ -66,7 +68,7 @@ const CategoryPage = () => {
                 setIsCreateEventDialogOpen(true);
               }}
             >
-              Create Meeting
+              {t("category.create-event")}
             </Button>
             <Button
               startIcon={<ContactlessIcon />}
@@ -77,7 +79,7 @@ const CategoryPage = () => {
                 setIsCreateEventDialogOpen(true);
               }}
             >
-              Create Live Stream
+              {t("category.create-live")}
             </Button>
           </Grid>
         ) : null}

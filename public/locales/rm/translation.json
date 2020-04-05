@@ -8,5 +8,9 @@
     "language": {
       "title": "Linguatg"
     }
+  },
+  "category": {
+    "create-event": "Pustar sessiun",
+    "create-live": "Pustar transposiziun"
   }
 }

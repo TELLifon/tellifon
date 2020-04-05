@@ -8,5 +8,9 @@
     "language": {
       "title": "Sprache"
     }
+  },
+  "category": {
+    "create-event": "Event anlegen",
+    "create-live": "Live-Stream anlegen"
   }
 }

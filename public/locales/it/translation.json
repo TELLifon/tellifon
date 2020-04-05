@@ -8,5 +8,9 @@
     "language": {
       "title": "Lingua"
     }
+  },
+  "category": {
+    "create-event": "Creare avvenimento",
+    "create-live": "Creare trasmissione in diretta"
   }
 }
