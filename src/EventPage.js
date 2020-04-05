@@ -83,7 +83,7 @@ const CategoryPage = () => {
         color="primary"
         variant="outlined"
         component={Link}
-        href={`https://jitsi.ch.amazee.io/${event.id}`}
+        href={`https://meet.tellifon.ch/${event.id}`}
         target="_blank"
         rel="noopener"
         fullWidth
