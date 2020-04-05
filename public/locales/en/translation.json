@@ -43,5 +43,11 @@
     },
     "create": "Create",
     "cancel": "Cancel"
+  },
+  "event": {
+    "open": "Open Event",
+    "from": "from",
+    "until": "until",
+    "by": "By"
   }
 }

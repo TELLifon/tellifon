@@ -43,5 +43,11 @@
     },
     "create": "Creare",
     "cancel": "Abortire"
+  },
+  "event": {
+    "open": "Aprire evento",
+    "from": "da",
+    "until": "a",
+    "by": "Attraverso"
   }
 }

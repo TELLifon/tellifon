@@ -43,5 +43,11 @@
     },
     "create": "Pustar",
     "cancel": "Bandunar"
+  },
+  "event": {
+    "open": "Aprire evento",
+    "from": "da",
+    "until": "a",
+    "by": "Attraverso"
   }
 }

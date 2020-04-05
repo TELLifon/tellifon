@@ -7,6 +7,7 @@ import Link from "@material-ui/core/Link";
 import { useParams } from "react-router-dom";
 import defaultImage from "./default-image.jpeg";
 import LaunchIcon from "@material-ui/icons/Launch";
+import { useTranslation } from "react-i18next";
 
 const useStyles = makeStyles((theme) => ({
   media: {
@@ -29,6 +30,7 @@ const CategoryPage = () => {
   const { eventId } = useParams();
   const classes = useStyles();
   const [event, setEvent] = useState(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
     fetch(`/api/events/${eventId}`)
@@ -71,14 +73,14 @@ const CategoryPage = () => {
               target="_blank"
               rel="noopener"
             >
-              Open Event
+              {t("event.open")}
             </Button>
           </Grid>
         ) : null}
       </Grid>
       <Typography variant="body2" color="textSecondary" component="p">
-        {new Date(event.starttime).toLocaleDateString()} from{" "}
-        {new Date(event.starttime).toLocaleTimeString()} until{" "}
+        {new Date(event.starttime).toLocaleDateString()} {t("event.from")}{" "}
+        {new Date(event.starttime).toLocaleTimeString()} {t("event.until")}{" "}
         {new Date(event.endtime).toLocaleDateString() ===
         new Date(event.starttime).toLocaleDateString()
           ? ""
@@ -87,7 +89,7 @@ const CategoryPage = () => {
       </Typography>
       {event.moderator ? (
         <Typography variant="body2" color="textSecondary" component="p">
-          By {event.moderator}
+          {t("event.by")} {event.moderator}
         </Typography>
       ) : null}
       <br />
@@ -109,7 +111,7 @@ const CategoryPage = () => {
           rel="noopener"
           fullWidth
         >
-          Open Event
+          {t("event.open")}
         </Button>
       ) : null}
     </div>

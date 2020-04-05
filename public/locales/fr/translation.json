@@ -43,5 +43,11 @@
     },
     "create": "Créer",
     "cancel": "Annuler"
+  },
+  "event": {
+    "open": "Accèder événement",
+    "from": "de",
+    "until": "au",
+    "by": "Par"
   }
 }
