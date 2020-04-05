@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import AppBar from "@material-ui/core/AppBar";
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
+import Button from "@material-ui/core/Button";
+import Grid from "@material-ui/core/Grid";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Divider from "@material-ui/core/Divider";
 import Drawer from "@material-ui/core/Drawer";
@@ -71,6 +75,21 @@ function ResponsiveDrawer(props) {
   const [categories, setCategories] = useState([]);
   const { t, i18n } = useTranslation();
 
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleLanguageChoice = (lang) => {
+    i18n.changeLanguage(lang);
+    handleClose();
+  };
+
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
@@ -116,18 +135,60 @@ function ResponsiveDrawer(props) {
         <CssBaseline />
         <AppBar position="fixed" className={classes.appBar}>
           <Toolbar>
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              edge="start"
-              onClick={handleDrawerToggle}
-              className={classes.menuButton}
+            <Grid
+              justify="space-between" // Add it here :)
+              container
+              spacing={24}
             >
-              <MenuIcon />
-            </IconButton>
-            <Typography variant="h6" noWrap>
-              Tellifon
-            </Typography>
+              <Grid item>
+                <IconButton
+                  color="inherit"
+                  aria-label="open drawer"
+                  edge="start"
+                  onClick={handleDrawerToggle}
+                  className={classes.menuButton}
+                >
+                  <MenuIcon />
+                </IconButton>
+                <Typography variant="h6" noWrap>
+                  Tellifon
+                </Typography>
+              </Grid>
+              <Grid item>
+                <Button
+                  aria-controls="simple-menu"
+                  aria-haspopup="true"
+                  onClick={handleClick}
+                  variant="contained"
+                  color="primary"
+                >
+                  Language
+                </Button>
+                <Menu
+                  id="simple-menu"
+                  anchorEl={anchorEl}
+                  keepMounted
+                  open={Boolean(anchorEl)}
+                  onClose={handleClose}
+                >
+                  <MenuItem onClick={() => handleLanguageChoice("en")}>
+                    English
+                  </MenuItem>
+                  <MenuItem onClick={() => handleLanguageChoice("de")}>
+                    Deutsch
+                  </MenuItem>
+                  <MenuItem onClick={() => handleLanguageChoice("fr")}>
+                    Francais
+                  </MenuItem>
+                  <MenuItem onClick={() => handleLanguageChoice("it")}>
+                    Italiano
+                  </MenuItem>
+                  <MenuItem onClick={() => handleLanguageChoice("rm")}>
+                    Rumantsch
+                  </MenuItem>
+                </Menu>
+              </Grid>
+            </Grid>
           </Toolbar>
         </AppBar>
         <nav className={classes.drawer} aria-label="mailbox folders">
