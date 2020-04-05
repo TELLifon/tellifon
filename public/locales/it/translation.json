@@ -49,5 +49,11 @@
     "from": "da",
     "until": "a",
     "by": "Attraverso"
+  },
+  "created": {
+    "title": "Evento creato",
+    "text": "Il vostro evento e stato creato su questo collegamento:",
+    "link": "Per favore prendere nota del collegamento et distribuire ai partecipanti",
+    "close": "Chiudere"
   }
 }

@@ -49,5 +49,11 @@
     "from": "de",
     "until": "au",
     "by": "Par"
+  },
+  "created": {
+    "title": "Evénement crée",
+    "text": "Votre événement à été crée. Vous le trouvez sur le lien suivant:",
+    "link": "Veuillez noter le lien et le partager avec les participants de l'événement.",
+    "close": "Fermer"
   }
 }

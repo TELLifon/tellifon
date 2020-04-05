@@ -49,5 +49,11 @@
     "from": "von",
     "until": "bis",
     "by": "Von"
+  },
+  "created": {
+    "title": "Event angelegt",
+    "text": "Ihr Event wurde erfolgreich angelegt. Sie finden Ihn unter:",
+    "link": "Bitte schreiben Sie diesen Link auf und teilen Sie ihn mit den Teilnehmenden des Events.",
+    "close": "Schliessen"
   }
 }

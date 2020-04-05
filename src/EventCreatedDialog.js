@@ -6,32 +6,28 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Typography from "@material-ui/core/Typography";
 import Link from "@material-ui/core/Link";
+import { useTranslation } from "react-i18next";
 
 const EventCreatedDialog = ({ isOpen, handleClose, eventId }) => {
   const url = `${window.location.protocol}//${window.location.host}/events/${eventId}`;
+  const { t } = useTranslation();
 
   return (
     <Dialog open={isOpen} onClose={handleClose} aria-labelledby="dialog-title">
-      <DialogTitle id="dialog-title">Event Created</DialogTitle>
+      <DialogTitle id="dialog-title">{t("created.title")}</DialogTitle>
       <DialogContent>
-        <Typography>
-          Your event has been successfully created. You can find it at the
-          following location:
-        </Typography>
+        <Typography>{t("created.text")}</Typography>
         <br />
         <Link href={url} target="_blank" rel="noopener">
           {url}
         </Link>
         <br />
         <br />
-        <Typography>
-          Please write this link down and share it with the participants of your
-          event.
-        </Typography>
+        <Typography>{t("created.link")}</Typography>
       </DialogContent>
       <DialogActions>
         <Button color="primary" variant="contained" onClick={handleClose}>
-          Close
+          {t("created.close")}
         </Button>
       </DialogActions>
     </Dialog>

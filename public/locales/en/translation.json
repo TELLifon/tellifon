@@ -49,5 +49,11 @@
     "from": "from",
     "until": "until",
     "by": "By"
+  },
+  "created": {
+    "title": "Event Created",
+    "text": "Your event has been successfully created. You can find it at the following location:",
+    "link": "Please write this link down and share it with the participants of your event.",
+    "close": "Close"
   }
 }
