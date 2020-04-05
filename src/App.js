@@ -25,6 +25,7 @@ import CategoryPage from "./CategoryPage";
 import HomePage from "./HomePage";
 import EventPage from "./EventPage";
 import "./App.css";
+import { useTranslation } from "react-i18next";
 
 const drawerWidth = 240;
 
@@ -68,6 +69,7 @@ function ResponsiveDrawer(props) {
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [categories, setCategories] = useState([]);
+  const { t, i18n } = useTranslation();
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
