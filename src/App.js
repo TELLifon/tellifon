@@ -65,6 +65,9 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(8),
     padding: theme.spacing(3),
   },
+  languageButton: {
+    color: "white",
+  },
 }));
 
 function ResponsiveDrawer(props) {
@@ -159,8 +162,7 @@ function ResponsiveDrawer(props) {
                   aria-controls="simple-menu"
                   aria-haspopup="true"
                   onClick={handleClick}
-                  variant="contained"
-                  color="primary"
+                  className={classes.languageButton}
                 >
                   Language
                 </Button>
