@@ -17,7 +17,6 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import MenuIcon from "@material-ui/icons/Menu";
 import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import {
   BrowserRouter as Router,
@@ -30,6 +29,7 @@ import HomePage from "./HomePage";
 import EventPage from "./EventPage";
 import "./App.css";
 import { useTranslation } from "react-i18next";
+import Logo from "./Logo";
 
 const drawerWidth = 240;
 
@@ -148,6 +148,7 @@ function ResponsiveDrawer(props) {
         <CssBaseline />
         <AppBar position="fixed" className={classes.appBar}>
           <Toolbar>
+            <Logo />
             <Grid
               justify="space-between" // Add it here :)
               container
@@ -163,9 +164,6 @@ function ResponsiveDrawer(props) {
                 >
                   <MenuIcon />
                 </IconButton>
-                <Typography variant="h6" noWrap>
-                  Tellifon
-                </Typography>
               </Grid>
               <Grid item>
                 <Button
