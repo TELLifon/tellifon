@@ -53,27 +53,9 @@ const CategoryPage = () => {
       <br />
       <br />
       <br />
-      <Grid container spacing={3}>
-        <Grid item xs={12} sm={4}>
-          <Typography variant="h4" gutterBottom>
-            {event.name}
-          </Typography>
-        </Grid>
-        <Grid item xs={12} sm={8} className={classes.actionButtons}>
-          <Button
-            size="large"
-            startIcon={<LaunchIcon />}
-            color="primary"
-            variant="contained"
-            component={Link}
-            href={`https://jitsi.ch.amazee.io/${event.id}`}
-            target="_blank"
-            rel="noopener"
-          >
-            Open Event
-          </Button>
-        </Grid>
-      </Grid>
+      <Typography variant="h4" gutterBottom>
+        {event.name}
+      </Typography>
       <Typography variant="body2" color="textSecondary" component="p">
         {new Date(event.starttime).toLocaleDateString()} from{" "}
         {new Date(event.starttime).toLocaleTimeString()} until{" "}
@@ -93,6 +75,21 @@ const CategoryPage = () => {
       <Typography variant="body1" gutterBottom>
         {event.description}
       </Typography>
+      <br />
+      <br />
+      <Button
+        size="large"
+        startIcon={<LaunchIcon />}
+        color="primary"
+        variant="outlined"
+        component={Link}
+        href={`https://jitsi.ch.amazee.io/${event.id}`}
+        target="_blank"
+        rel="noopener"
+        fullWidth
+      >
+        Open Event
+      </Button>
     </div>
   ) : null;
 };
