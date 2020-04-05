@@ -70,6 +70,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const filterLanguage = (lang) =>
+  lang &&
+  (lang === "en" ||
+    lang === "de" ||
+    lang === "fr" ||
+    lang === "it" ||
+    lang === "rm")
+    ? lang
+    : "en";
+
 function ResponsiveDrawer(props) {
   const { container } = props;
   const classes = useStyles();
@@ -125,7 +135,7 @@ function ResponsiveDrawer(props) {
             <ListItemIcon>
               <Icon>{c.icon}</Icon>
             </ListItemIcon>
-            <ListItemText primary={c.label[i18n.language || "en"]} />
+            <ListItemText primary={c.label[filterLanguage(i18n.language)]} />
           </ListItem>
         ))}
       </List>
