@@ -12,5 +12,10 @@
   "category": {
     "create-event": "Créer événement",
     "create-live": "Créer émission en directe"
+  },
+  "home": {
+    "title": "Bienvenue chez Tellifon",
+    "text": "",
+    "get-started": ""
   }
 }

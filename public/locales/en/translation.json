@@ -12,5 +12,10 @@
   "category": {
     "create-event": "Create Event",
     "create-live": "Create Live Stream"
+  },
+  "home": {
+    "title": "Welcome to Tellifon!",
+    "text": "Tellifon is a service that allows you to anonymously and securely share your skills, have a casual chat with friends or an important company meeting. We are hosted entirely in Switzerland, end to end encrypted and officialy William Tell approved.",
+    "get-started": "To get started, simply choose one of the categories on the left and join an existing event or create your own."
   }
 }

@@ -12,5 +12,10 @@
   "category": {
     "create-event": "Event anlegen",
     "create-live": "Live-Stream anlegen"
+  },
+  "home": {
+    "title": "Willkommen bei Tellifon",
+    "text": "Tellifon ist ein Dienst, welcher Ihnen erlaubt, sich anonym und sicher mit anderen auszutauschen, entspannt zu plaudern oder ein wichtiges geschäftliches Meeting abzuhalten. Wir sind ausschliesslich in der Schweiz gehostet, durchgängig verschlüsselt und offiziell von Willhelm Tell empfohlen.",
+    "get-started": "Um loszulegen, wählen Sie eine beliebige Kategorie links und treten Sie einem bestehenden Event bei oder kreieren Sie einen neuen."
   }
 }

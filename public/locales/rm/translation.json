@@ -12,5 +12,10 @@
   "category": {
     "create-event": "Pustar sessiun",
     "create-live": "Pustar transposiziun"
+  },
+  "home": {
+    "title": "Bainvegni tar Tellifon",
+    "text": "",
+    "get-started": ""
   }
 }

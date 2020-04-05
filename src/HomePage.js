@@ -1,6 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
+import { useTranslation } from "react-i18next";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -10,24 +11,17 @@ const useStyles = makeStyles((theme) => ({
 
 const HomePage = () => {
   const classes = useStyles();
+  const { t } = useTranslation();
 
   return (
     <div className={classes.container}>
       <Typography variant="h4" gutterBottom>
-        Welcome to Tellifon!
+        {t("home.title")}
       </Typography>
       <br />
-      <Typography>
-        Tellifon is a service that allows you to anonymously and securely share
-        your skills, have a casual chat with friends or an important company
-        meeting. We are hosted entirely in Switzerland, end to end encrypted and
-        officialy William Tell approved.
-      </Typography>
+      <Typography>{t("home.text")}</Typography>
       <br />
-      <Typography>
-        To get started, simply choose one of the categories on the left and join
-        an existing event or create your own.
-      </Typography>
+      <Typography>{t("home.get-started")}</Typography>
     </div>
   );
 };
