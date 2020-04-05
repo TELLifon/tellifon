@@ -17,6 +17,7 @@ import {
 } from "@material-ui/pickers";
 import Grid from "@material-ui/core/Grid";
 import EventCreatedDialog from "./EventCreatedDialog";
+import { useTranslation } from "react-i18next";
 
 const useStyles = makeStyles((theme) => ({
   imagePreview: {
@@ -52,6 +53,7 @@ const CreateEventDialog = ({ isOpen, handleClose, categoryId }) => {
   const [moderatorName, setModeratorName] = useState("");
   const [isPublic, setIsPublic] = useState(true);
   const [image, setImage] = useState(null);
+  const { t } = useTranslation();
 
   const onDrop = useCallback((acceptedFiles) => {
     setImage(
@@ -115,14 +117,14 @@ const CreateEventDialog = ({ isOpen, handleClose, categoryId }) => {
         onClose={handleClose}
         aria-labelledby="form-dialog-title"
       >
-        <DialogTitle id="form-dialog-title">Create Event</DialogTitle>
+        <DialogTitle id="form-dialog-title">{t("create.title")}</DialogTitle>
 
         <DialogContent>
           <TextField
             autoFocus
             margin="normal"
             id="title"
-            label="Title"
+            label={t("create.label.title")}
             fullWidth
             value={title}
             onChange={(e) => {
@@ -132,7 +134,7 @@ const CreateEventDialog = ({ isOpen, handleClose, categoryId }) => {
           <TextField
             margin="normal"
             id="description"
-            label="Description"
+            label={t("create.label.description")}
             multiline
             fullWidth
             value={description}
@@ -143,7 +145,7 @@ const CreateEventDialog = ({ isOpen, handleClose, categoryId }) => {
           <TextField
             margin="normal"
             id="moderator-name"
-            label="Moderator Name (Optional)"
+            label={t("create.label.moderator")}
             fullWidth
             value={moderatorName}
             onChange={(e) => {
@@ -165,16 +167,16 @@ const CreateEventDialog = ({ isOpen, handleClose, categoryId }) => {
                   setImage(null);
                 }}
               >
-                Clear Image
+                {t("create.label.image.clear")}
               </Button>
             </>
           ) : (
             <div className={classes.dropzone} {...getRootProps()}>
               <input {...getInputProps()} />
               {isDragActive ? (
-                <p>Drop the image here</p>
+                <p>{t("create.label.image.drop")}</p>
               ) : (
-                <p>Drag and drop or click to select an image</p>
+                <p>{t("create.label.image.drag-drop")}</p>
               )}
             </div>
           )}
@@ -194,7 +196,7 @@ const CreateEventDialog = ({ isOpen, handleClose, categoryId }) => {
                   setStartTime(d);
                   setIsStartDatePickerOpen(false);
                 }}
-                label="Start date"
+                label={t("create.label.dates.start.date")}
                 variant="inline"
                 format="MM/dd/yyyy"
                 margin="normal"
@@ -205,7 +207,7 @@ const CreateEventDialog = ({ isOpen, handleClose, categoryId }) => {
                 }}
               />
               <KeyboardTimePicker
-                label="Start time"
+                label={t("create.label.dates.start.time")}
                 margin="normal"
                 id="time-picker"
                 value={startTime}
@@ -223,7 +225,7 @@ const CreateEventDialog = ({ isOpen, handleClose, categoryId }) => {
             <Grid container justify="space-around">
               <KeyboardDatePicker
                 disableToolbar
-                label="End date"
+                label={t("create.label.dates.end.date")}
                 variant="inline"
                 format="MM/dd/yyyy"
                 margin="normal"
@@ -245,7 +247,7 @@ const CreateEventDialog = ({ isOpen, handleClose, categoryId }) => {
                 }}
               />
               <KeyboardTimePicker
-                label="End time"
+                label={t("create.label.dates.end.time")}
                 margin="normal"
                 id="time-picker"
                 value={endTime}
@@ -270,12 +272,12 @@ const CreateEventDialog = ({ isOpen, handleClose, categoryId }) => {
                 inputProps={{ "aria-label": "" }}
               />
             }
-            label="Make event public"
+            label={t("create.label.public")}
           />
         </DialogContent>
         <DialogActions>
           <Button color="primary" onClick={handleClose}>
-            Cancel
+            {t("create.cancel")}
           </Button>
           <Button
             color="primary"
@@ -283,7 +285,7 @@ const CreateEventDialog = ({ isOpen, handleClose, categoryId }) => {
             disabled={!allFieldsValid()}
             onClick={handleCreate}
           >
-            Create
+            {t("create.create")}
           </Button>
         </DialogActions>
       </Dialog>

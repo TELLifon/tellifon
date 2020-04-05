@@ -17,5 +17,31 @@
     "title": "Bienvenue chez Tellifon",
     "text": "",
     "get-started": ""
+  },
+  "create": {
+    "title": "Créer événement",
+    "label": {
+      "title": "Titre",
+      "description": "Description",
+      "moderator": "Nom du modérateur (Optional)",
+      "image": {
+        "clear": "Effacer image",
+        "drop": "Déposer l'image ici",
+        "drag-drop": "Glisser et déposer ici ou cliquez pour séléctionner une image"
+      },
+      "dates": {
+        "start": {
+          "date": "Date de début",
+          "time": "Heure de début"
+        },
+        "end": {
+          "date": "Date de fin",
+          "time": "Heure de fin"
+        }
+      },
+      "public": "Evénement est public"
+    },
+    "create": "Créer",
+    "cancel": "Annuler"
   }
 }

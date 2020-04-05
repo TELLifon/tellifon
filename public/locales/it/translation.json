@@ -10,12 +10,38 @@
     }
   },
   "category": {
-    "create-event": "Creare avvenimento",
+    "create-event": "Creare evento",
     "create-live": "Creare trasmissione in diretta"
   },
   "home": {
     "title": "Benvenuti da Tellifon",
     "text": "",
     "get-started": ""
+  },
+  "create": {
+    "title": "Creare evento",
+    "label": {
+      "title": "Titolo",
+      "description": "Descrizione",
+      "moderator": "Nome del moderatore (opzionale)",
+      "image": {
+        "clear": "Cancellare immagine",
+        "drop": "Rilasciare immagine qui",
+        "drag-drop": "Trascinare e rilasciare o clic per selezionare immagine"
+      },
+      "dates": {
+        "start": {
+          "date": "Data di inizio",
+          "time": "Ora di inizio"
+        },
+        "end": {
+          "date": "Data di fine",
+          "time": "Ora di fine"
+        }
+      },
+      "public": "Evento pubblico"
+    },
+    "create": "Creare",
+    "cancel": "Abortire"
   }
 }

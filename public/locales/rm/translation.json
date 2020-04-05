@@ -17,5 +17,31 @@
     "title": "Bainvegni tar Tellifon",
     "text": "",
     "get-started": ""
+  },
+  "create": {
+    "title": "Pustar sessiun",
+    "label": {
+      "title": "Titel",
+      "description": "Descripziun",
+      "moderator": "Num da moderator (facultativ)",
+      "image": {
+        "clear": "Cancellare immagine",
+        "drop": "Rilasciare immagine qui",
+        "drag-drop": "Trascinare e rilasciare o clic per selezionare immagine"
+      },
+      "dates": {
+        "start": {
+          "date": "Data di inizio",
+          "time": "Ora di inizio"
+        },
+        "end": {
+          "date": "Data di fine",
+          "time": "Ora di fine"
+        }
+      },
+      "public": "Sessiun public"
+    },
+    "create": "Pustar",
+    "cancel": "Bandunar"
   }
 }
