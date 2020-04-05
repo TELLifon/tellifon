@@ -15,8 +15,8 @@
   },
   "home": {
     "title": "Bienvenue chez Tellifon",
-    "text": "",
-    "get-started": ""
+    "text": "Tellifon est un service qui vous /te permet de partager vos/tes connaissances de manière sure et anonyme, de bavarder avec des amis ou d’avoir des colloques importants de compagnies. Nous sommes basés entièrement en Suisse, avec chiffrement de bout en bout et aprouvé officiellement par Guillaume Tell.",
+    "get-started": "Pour commencer, choisissez tout simplement une des catégories à gauche et participez à un évènement qui existe déjà ou créez le votre."
   },
   "create": {
     "title": "Créer événement",
