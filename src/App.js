@@ -164,7 +164,7 @@ function ResponsiveDrawer(props) {
                   onClick={handleClick}
                   className={classes.languageButton}
                 >
-                  Language
+                  {t("main.language.title")}
                 </Button>
                 <Menu
                   id="simple-menu"
