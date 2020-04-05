@@ -16,6 +16,7 @@ import {
   KeyboardDatePicker,
 } from "@material-ui/pickers";
 import Grid from "@material-ui/core/Grid";
+import EventCreatedDialog from "./EventCreatedDialog";
 
 const useStyles = makeStyles((theme) => ({
   imagePreview: {
@@ -35,8 +36,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const CreateEventModal = ({ isOpen, handleClose, categoryId }) => {
+const CreateEventDialog = ({ isOpen, handleClose, categoryId }) => {
   const classes = useStyles();
+  const [createdEventId, setCreatedEventId] = useState("");
 
   var now = new Date();
   var inOneHour = new Date();
@@ -75,10 +77,12 @@ const CreateEventModal = ({ isOpen, handleClose, categoryId }) => {
       formData.append("image", image);
     }
 
-    await fetch(`/api/categories/${categoryId}/events`, {
+    const rawRes = await fetch(`/api/categories/${categoryId}/events`, {
       method: "POST",
       body: formData,
     });
+    const res = await rawRes.json();
+
     setTitle("");
     setDescription("");
     setModeratorName("");
@@ -89,6 +93,8 @@ const CreateEventModal = ({ isOpen, handleClose, categoryId }) => {
     setStartTime(now);
     setEndTime(inOneHour);
     handleClose();
+
+    setCreatedEventId(res.id);
   };
 
   const allFieldsValid = () => {
@@ -103,184 +109,194 @@ const CreateEventModal = ({ isOpen, handleClose, categoryId }) => {
   };
 
   return (
-    <Dialog
-      open={isOpen}
-      onClose={handleClose}
-      aria-labelledby="form-dialog-title"
-    >
-      <DialogTitle id="form-dialog-title">Create Event</DialogTitle>
+    <>
+      <Dialog
+        open={isOpen}
+        onClose={handleClose}
+        aria-labelledby="form-dialog-title"
+      >
+        <DialogTitle id="form-dialog-title">Create Event</DialogTitle>
 
-      <DialogContent>
-        <TextField
-          autoFocus
-          margin="normal"
-          id="title"
-          label="Title"
-          fullWidth
-          value={title}
-          onChange={(e) => {
-            setTitle(e.target.value);
-          }}
-        />
-        <TextField
-          margin="normal"
-          id="description"
-          label="Description"
-          multiline
-          fullWidth
-          value={description}
-          onChange={(e) => {
-            setDescription(e.target.value);
-          }}
-        />
-        <TextField
-          margin="normal"
-          id="moderator-name"
-          label="Moderator Name (Optional)"
-          fullWidth
-          value={moderatorName}
-          onChange={(e) => {
-            setModeratorName(e.target.value);
-          }}
-        />
-        <br />
-        <br />
-        {image ? (
-          <>
-            <img
-              src={image.preview}
-              alt="preview"
-              className={classes.imagePreview}
-            />
-            <Button
-              color="secondary"
-              onClick={() => {
-                setImage(null);
-              }}
-            >
-              Clear Image
-            </Button>
-          </>
-        ) : (
-          <div className={classes.dropzone} {...getRootProps()}>
-            <input {...getInputProps()} />
-            {isDragActive ? (
-              <p>Drop the image here</p>
-            ) : (
-              <p>Drag and drop or click to select an image</p>
-            )}
-          </div>
-        )}
-        <br />
-        <MuiPickersUtilsProvider utils={DateFnsUtils}>
-          <Grid container justify="space-around">
-            <KeyboardDatePicker
-              disableToolbar
-              open={isStartDatePickerOpen}
-              onOpen={() => {
-                setIsStartDatePickerOpen(true);
-              }}
-              onClose={() => {
-                setIsStartDatePickerOpen(false);
-              }}
-              onChange={(d) => {
-                setStartTime(d);
-                setIsStartDatePickerOpen(false);
-              }}
-              label="Start date"
-              variant="inline"
-              format="MM/dd/yyyy"
-              margin="normal"
-              id="date-picker-inline"
-              value={startTime}
-              KeyboardButtonProps={{
-                "aria-label": "change date",
-              }}
-            />
-            <KeyboardTimePicker
-              label="Start time"
-              margin="normal"
-              id="time-picker"
-              value={startTime}
-              onChange={(d) => {
-                setStartTime(d);
-              }}
-              KeyboardButtonProps={{
-                "aria-label": "change time",
-              }}
-            />
-          </Grid>
-        </MuiPickersUtilsProvider>
-        <br />
-        <MuiPickersUtilsProvider utils={DateFnsUtils}>
-          <Grid container justify="space-around">
-            <KeyboardDatePicker
-              disableToolbar
-              label="End date"
-              variant="inline"
-              format="MM/dd/yyyy"
-              margin="normal"
-              id="date-picker-inline"
-              value={endTime}
-              open={isEndDatePickerOpen}
-              onOpen={() => {
-                setIsEndDatePickerOpen(true);
-              }}
-              onClose={() => {
-                setIsEndDatePickerOpen(false);
-              }}
-              onChange={(d) => {
-                setEndTime(d);
-                setIsEndDatePickerOpen(false);
-              }}
-              KeyboardButtonProps={{
-                "aria-label": "change date",
-              }}
-            />
-            <KeyboardTimePicker
-              label="End time"
-              margin="normal"
-              id="time-picker"
-              value={endTime}
-              onChange={(d) => {
-                setEndTime(d);
-              }}
-              KeyboardButtonProps={{
-                "aria-label": "change time",
-              }}
-            />
-          </Grid>
-        </MuiPickersUtilsProvider>
-        <br />
-        <br />
-        <FormControlLabel
-          control={
-            <Checkbox
-              checked={isPublic}
-              onChange={(e) => {
-                setIsPublic(e.target.checked);
-              }}
-              inputProps={{ "aria-label": "" }}
-            />
-          }
-          label="Make event public"
-        />
-      </DialogContent>
-      <DialogActions>
-        <Button color="primary" onClick={handleClose}>
-          Cancel
-        </Button>
-        <Button
-          color="primary"
-          variant="contained"
-          disabled={!allFieldsValid()}
-          onClick={handleCreate}
-        >
-          Create
-        </Button>
-      </DialogActions>
-    </Dialog>
+        <DialogContent>
+          <TextField
+            autoFocus
+            margin="normal"
+            id="title"
+            label="Title"
+            fullWidth
+            value={title}
+            onChange={(e) => {
+              setTitle(e.target.value);
+            }}
+          />
+          <TextField
+            margin="normal"
+            id="description"
+            label="Description"
+            multiline
+            fullWidth
+            value={description}
+            onChange={(e) => {
+              setDescription(e.target.value);
+            }}
+          />
+          <TextField
+            margin="normal"
+            id="moderator-name"
+            label="Moderator Name (Optional)"
+            fullWidth
+            value={moderatorName}
+            onChange={(e) => {
+              setModeratorName(e.target.value);
+            }}
+          />
+          <br />
+          <br />
+          {image ? (
+            <>
+              <img
+                src={image.preview}
+                alt="preview"
+                className={classes.imagePreview}
+              />
+              <Button
+                color="secondary"
+                onClick={() => {
+                  setImage(null);
+                }}
+              >
+                Clear Image
+              </Button>
+            </>
+          ) : (
+            <div className={classes.dropzone} {...getRootProps()}>
+              <input {...getInputProps()} />
+              {isDragActive ? (
+                <p>Drop the image here</p>
+              ) : (
+                <p>Drag and drop or click to select an image</p>
+              )}
+            </div>
+          )}
+          <br />
+          <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            <Grid container justify="space-around">
+              <KeyboardDatePicker
+                disableToolbar
+                open={isStartDatePickerOpen}
+                onOpen={() => {
+                  setIsStartDatePickerOpen(true);
+                }}
+                onClose={() => {
+                  setIsStartDatePickerOpen(false);
+                }}
+                onChange={(d) => {
+                  setStartTime(d);
+                  setIsStartDatePickerOpen(false);
+                }}
+                label="Start date"
+                variant="inline"
+                format="MM/dd/yyyy"
+                margin="normal"
+                id="date-picker-inline"
+                value={startTime}
+                KeyboardButtonProps={{
+                  "aria-label": "change date",
+                }}
+              />
+              <KeyboardTimePicker
+                label="Start time"
+                margin="normal"
+                id="time-picker"
+                value={startTime}
+                onChange={(d) => {
+                  setStartTime(d);
+                }}
+                KeyboardButtonProps={{
+                  "aria-label": "change time",
+                }}
+              />
+            </Grid>
+          </MuiPickersUtilsProvider>
+          <br />
+          <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            <Grid container justify="space-around">
+              <KeyboardDatePicker
+                disableToolbar
+                label="End date"
+                variant="inline"
+                format="MM/dd/yyyy"
+                margin="normal"
+                id="date-picker-inline"
+                value={endTime}
+                open={isEndDatePickerOpen}
+                onOpen={() => {
+                  setIsEndDatePickerOpen(true);
+                }}
+                onClose={() => {
+                  setIsEndDatePickerOpen(false);
+                }}
+                onChange={(d) => {
+                  setEndTime(d);
+                  setIsEndDatePickerOpen(false);
+                }}
+                KeyboardButtonProps={{
+                  "aria-label": "change date",
+                }}
+              />
+              <KeyboardTimePicker
+                label="End time"
+                margin="normal"
+                id="time-picker"
+                value={endTime}
+                onChange={(d) => {
+                  setEndTime(d);
+                }}
+                KeyboardButtonProps={{
+                  "aria-label": "change time",
+                }}
+              />
+            </Grid>
+          </MuiPickersUtilsProvider>
+          <br />
+          <br />
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={isPublic}
+                onChange={(e) => {
+                  setIsPublic(e.target.checked);
+                }}
+                inputProps={{ "aria-label": "" }}
+              />
+            }
+            label="Make event public"
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button color="primary" onClick={handleClose}>
+            Cancel
+          </Button>
+          <Button
+            color="primary"
+            variant="contained"
+            disabled={!allFieldsValid()}
+            onClick={handleCreate}
+          >
+            Create
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      <EventCreatedDialog
+        isOpen={Boolean(createdEventId)}
+        eventId={createdEventId}
+        handleClose={() => {
+          setCreatedEventId("");
+        }}
+      />
+    </>
   );
 };
 
-export default CreateEventModal;
+export default CreateEventDialog;

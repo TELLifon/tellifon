@@ -53,7 +53,7 @@ const CategoryPage = () => {
       <Grid container spacing={3}>
         <Grid item xs={12} sm={4}>
           <Typography variant="h4" gutterBottom>
-            {category.label}
+            {category.label.en}
           </Typography>
         </Grid>
         <Grid item xs={12} sm={8} className={classes.actionButtons}>
