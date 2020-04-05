@@ -51,35 +51,69 @@ const CategoryPage = () => {
   return category ? (
     <div>
       <Grid container spacing={3}>
-        <Grid item xs={12} sm={4}>
+        <Grid item xs={12} md={4}>
           <Typography variant="h4" gutterBottom>
             {category.label.en}
           </Typography>
         </Grid>
-        <Grid item xs={12} sm={8} className={classes.actionButtons}>
+        {window.innerWidth > 768 ? (
+          <Grid item xs={12} md={8} className={classes.actionButtons}>
+            <Button
+              startIcon={<PeopleIcon />}
+              color="primary"
+              variant="outlined"
+              onClick={() => {
+                setIsCreateEventDialogOpen(true);
+              }}
+            >
+              Create Meeting
+            </Button>
+            <Button
+              startIcon={<ContactlessIcon />}
+              color="primary"
+              variant="outlined"
+              className={classes.actionButton}
+              onClick={() => {
+                setIsCreateEventDialogOpen(true);
+              }}
+            >
+              Create Live Stream
+            </Button>
+          </Grid>
+        ) : null}
+      </Grid>
+      {window.innerWidth <= 768 ? (
+        <>
+          <br />
+          <br />
           <Button
             startIcon={<PeopleIcon />}
             color="primary"
             variant="outlined"
+            fullWidth
             onClick={() => {
               setIsCreateEventDialogOpen(true);
             }}
           >
             Create Meeting
           </Button>
+          <br />
+          <br />
           <Button
             startIcon={<ContactlessIcon />}
             color="primary"
             variant="outlined"
-            className={classes.actionButton}
+            fullWidth
             onClick={() => {
               setIsCreateEventDialogOpen(true);
             }}
           >
             Create Live Stream
           </Button>
-        </Grid>
-      </Grid>
+          <br />
+          <br />
+        </>
+      ) : null}
       <br />
       <br />
       <Grid container spacing={3}>
